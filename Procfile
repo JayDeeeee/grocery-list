@@ -1,1 +1,1 @@
-app: sbt run
+web: target/universal/stage/bin/grocery-list
