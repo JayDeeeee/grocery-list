@@ -5,8 +5,7 @@ import akka.actor.typed.scaladsl.Behaviors
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 
-import scala.util.Failure
-import scala.util.Success
+import scala.util.{Failure, Properties, Success}
 
 //#main-class
 object QuickstartApp {
@@ -15,7 +14,7 @@ object QuickstartApp {
     // Akka HTTP still needs a classic ActorSystem to start
     import system.executionContext
 
-    val port = if (sys.env.contains("PORT")) sys.env("PORT").toInt else 8080
+    val port = Properties.envOrElse("PORT", "8080").toInt
     val futureBinding = Http().newServerAt("localhost", port).bind(routes)
     futureBinding.onComplete {
       case Success(binding) =>
