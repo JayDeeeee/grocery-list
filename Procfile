@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/grocery-list
+web: target/universal/stage/bin/grocery-list-app
