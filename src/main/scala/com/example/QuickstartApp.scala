@@ -15,7 +15,8 @@ object QuickstartApp {
     // Akka HTTP still needs a classic ActorSystem to start
     import system.executionContext
 
-    val futureBinding = Http().newServerAt("localhost", 8080).bind(routes)
+    val port = if (sys.env("PORT").nonEmpty) sys.env("PORT").toInt else 8000
+    val futureBinding = Http().newServerAt("localhost", port).bind(routes)
     futureBinding.onComplete {
       case Success(binding) =>
         val address = binding.localAddress
