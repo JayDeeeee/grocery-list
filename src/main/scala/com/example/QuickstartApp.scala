@@ -15,7 +15,7 @@ object QuickstartApp {
     import system.executionContext
 
     val port = Properties.envOrElse("PORT", "8080").toInt
-    val futureBinding = Http().newServerAt("localhost", port).bind(routes)
+    val futureBinding = Http().newServerAt("0.0.0.0", port).bind(routes)
     futureBinding.onComplete {
       case Success(binding) =>
         val address = binding.localAddress
